@@ -1,6 +1,8 @@
 
 import {Suite, expect} from "cynic"
-import {parse, Datatype, SymbolData, ListData} from "./sketch.js"
+
+import {parse} from "./parse.js"
+import {Datatype, SymbolData, ListData} from "./types.js"
 
 export default <Suite> {
 	"parser": {
