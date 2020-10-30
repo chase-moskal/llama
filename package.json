@@ -1,0 +1,53 @@
+{
+	"name": "crispylisp",
+	"version": "0.0.0-dev.0",
+	"description": "",
+	"license": "ISC",
+	"author": "Chase Moskal <chasemoskal@gmail.com>",
+	"type": "module",
+	"files": [
+		"x",
+		"s",
+		"web"
+	],
+	"scripts": {
+		"prepare": "run-s clean && run-p importmap compile-tsc compile-pug compile-sass && run-s test",
+		"clean": "rimraf x *.pem && mkdirp x",
+		"importmap": "importly --host=unpkg < package.json > x/importmap.json",
+		"compile-tsc": "tsc",
+		"compile-pug": "pug -o x web -O '{\"debug\": false}'",
+		"compile-pug-dev": "pug -o x web -O '{\"debug\": true}'",
+		"compile-sass": "sass web/:x/",
+		"watch-tsc": "npm run compile-tsc -s -- --watch",
+		"watch-pug": "npm run compile-pug-dev -s -- --watch",
+		"watch-sass": "npm run compile-sass -s -- --watch",
+		"watch": "run-p watch-tsc watch-pug watch-sass",
+		"start": "serve",
+		"test": "cynic node --label='crispy tests' x/tests.test.js",
+		"test-browser": "cynic browser x/tests.test.js --open=true --importmap-path=./x/importmap.json"
+	},
+	"devDependencies": {
+		"@types/pug": "^2.0.4",
+		"cynic": "0.1.0-dev.10",
+		"importly": "0.1.0-dev.0",
+		"mkdirp": "^1.0.4",
+		"npm-run-all": "^4.1.5",
+		"pug-cli": "^1.0.0-alpha6",
+		"rimraf": "^3.0.2",
+		"sass": "^1.27.0",
+		"serve": "^11.3.2",
+		"typescript": "^4.0.3"
+	},
+	"dependencies": {},
+	"keywords": [
+		""
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/chase-moskal/crispy.git"
+	},
+	"bugs": {
+		"url": "https://github.com/chase-moskal/crispy/issues"
+	},
+	"homepage": "https://github.com/chase-moskal/crispy#readme"
+}
