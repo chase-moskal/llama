@@ -1,5 +1,5 @@
 
-export enum Datatype {
+export enum Axiom {
 	Symbol,
 	Number,
 	List,
@@ -9,26 +9,26 @@ export enum Datatype {
 export type ListChildren = [SymbolData, ...Datum[]]
 
 export interface Datum {
-	type: Datatype
+	type: Axiom
 }
 
 export interface SymbolData extends Datum {
-	type: Datatype.Symbol
+	type: Axiom.Symbol
 	body: string
 }
 
 export interface NumberData extends Datum {
-	type: Datatype.Number
+	type: Axiom.Number
 	value: number
 }
 
 export interface ListData extends Datum {
-	type: Datatype.List
+	type: Axiom.List
 	children: ListChildren
 }
 
 export interface EnvironmentData extends Datum {
-	type: Datatype.Environment
+	type: Axiom.Environment
 	store: {[key: string]: Datum}
 }
 

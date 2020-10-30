@@ -2,8 +2,8 @@
 export function tokenize(input: string) {
 	return input
 		.trim()
-		.replace("(", " ( ")
-		.replace(")", " ) ")
+		.replace(/\(/gi, " ( ")
+		.replace(/\)/gi, " ) ")
 		.split(" ")
 		.filter(token => !!token.length)
 }

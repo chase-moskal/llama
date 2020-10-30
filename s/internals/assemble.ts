@@ -1,19 +1,17 @@
 
 import {atomize} from "./atomize.js"
-import {Datatype, ExpressionData, ListData} from "../types.js"
+import {Axiom, ExpressionData, ListData} from "../types.js"
 
-export function assemble([token, ...more]: string[]): ExpressionData {
+export function assemble(tokens: string[]): ExpressionData {
+	const token = tokens.shift()
 	switch (token) {
 
 		case "(": {
 			const children = []
-			for (let i = 0; i < more.length; i++) {
-				const sub = more[i]
-				if (sub !== ")") children.push(assemble([sub]))
-				else break
-			}
+			while (tokens[0] !== ")") children.push(assemble(tokens))
+			tokens.shift()
 			return <ListData>{
-				type: Datatype.List,
+				type: Axiom.List,
 				children,
 			}
 		}

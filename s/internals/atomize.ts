@@ -1,8 +1,8 @@
 
-import {Datatype, SymbolData, AtomData, NumberData} from "../types.js"
+import {Axiom, SymbolData, AtomData, NumberData} from "../types.js"
 
 const nil: SymbolData = Object.freeze({
-	type: Datatype.Symbol,
+	type: Axiom.Symbol,
 	body: "nil",
 })
 
@@ -14,13 +14,13 @@ export function atomize(token: string): AtomData {
 		const value = <number>new Number(token)
 		if (isNaN(value)) throw new Error()
 		return <NumberData>{
-			type: Datatype.Number,
+			type: Axiom.Number,
 			value,
 		}
 	}
 	catch (error) {}
 	return <SymbolData>{
-		type: Datatype.Symbol,
+		type: Axiom.Symbol,
 		body: token,
 	}
 }
