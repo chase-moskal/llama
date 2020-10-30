@@ -1,8 +1,8 @@
 
 import {atomize} from "./atomize.js"
-import {Axiom, ExpressionData, ListData} from "../types.js"
+import {Axiom, Syntax} from "../types.js"
 
-export function assemble(tokens: string[]): ExpressionData {
+export function assemble(tokens: string[]): Syntax.Expression {
 	const token = tokens.shift()
 	switch (token) {
 
@@ -10,7 +10,7 @@ export function assemble(tokens: string[]): ExpressionData {
 			const children = []
 			while (tokens[0] !== ")") children.push(assemble(tokens))
 			tokens.shift()
-			return <ListData>{
+			return <Syntax.List>{
 				type: Axiom.List,
 				children,
 			}

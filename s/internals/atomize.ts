@@ -1,25 +1,25 @@
 
-import {Axiom, SymbolData, AtomData, NumberData} from "../types.js"
+import {Axiom, Syntax} from "../types.js"
 
-const nil: SymbolData = Object.freeze({
+const nil: Syntax.Symbol = Object.freeze({
 	type: Axiom.Symbol,
 	body: "nil",
 })
 
-export function atomize(token: string): AtomData {
+export function atomize(token: string): Syntax.Atom {
 	if (typeof token !== "string") return nil
 	token = token.trim()
 	if (!token.length) return nil
 	try {
 		const value = <number>new Number(token)
 		if (isNaN(value)) throw new Error()
-		return <NumberData>{
+		return <Syntax.Number>{
 			type: Axiom.Number,
 			value,
 		}
 	}
 	catch (error) {}
-	return <SymbolData>{
+	return <Syntax.Symbol>{
 		type: Axiom.Symbol,
 		body: token,
 	}
