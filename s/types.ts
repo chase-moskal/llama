@@ -3,7 +3,6 @@ export enum Axiom {
 	Symbol,
 	Number,
 	List,
-	Environment,
 }
 
 export namespace Syntax {
@@ -25,11 +24,6 @@ export namespace Syntax {
 	export interface List extends Datum {
 		type: Axiom.List
 		children: Sub
-	}
-
-	export interface Environment extends Datum {
-		type: Axiom.Environment
-		store: {[key: string]: Datum}
 	}
 
 	export type Atom = Symbol | Number

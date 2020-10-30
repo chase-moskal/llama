@@ -11,7 +11,7 @@ export function atomize(token: string): Syntax.Atom {
 	token = token.trim()
 	if (!token.length) return nil
 	try {
-		const value = <number>new Number(token)
+		const value = new Number(token).valueOf()
 		if (isNaN(value)) throw new Error()
 		return <Syntax.Number>{
 			type: Axiom.Number,
