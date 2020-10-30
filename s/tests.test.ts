@@ -5,12 +5,14 @@ import {parse, Datatype, SymbolData, ListData} from "./sketch.js"
 export default <Suite> {
 	"parser": {
 		"parse empty string returns nil": async() => {
-			const tree = <SymbolData>parse(``)
+			const program = ``
+			const tree = <SymbolData>parse(program)
 			return expect(tree.type).equals(Datatype.Symbol)
 				&& expect(tree.body).equals("nil")
 		},
 		"parse simple math operation": async() => {
-			const tree = <ListData>parse(`(+ 1 2)`)
+			const program = `(+ 1 2)`
+			const tree = <ListData>parse(program)
 			return expect(tree.children).ok()
 				&& expect(tree.children[0].type).equals(Datatype.Symbol)
 				&& expect(tree.children[1].type).equals(Datatype.Number)
