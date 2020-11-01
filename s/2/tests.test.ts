@@ -30,6 +30,7 @@ export default <Suite> {
 			assert(tokens[0].value === "hello", "value is 'hello'")
 			return true
 		},
+
 		// "differentiate strings and comments": async() => {
 		// 	const a = tokenize(`"example"`)
 		// 	const b = tokenize(`// example`)
