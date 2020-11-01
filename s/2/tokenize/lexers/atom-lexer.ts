@@ -7,6 +7,15 @@ export default function atomLexer(): Lexer<Token.Atom> {
 	let start = 0
 	let atom = ""
 
+	function lex(character: string, index: number) {
+		if (/\s/.test(character)) terminate(index)
+		else if (atom.length === 0) {
+			start = index
+			atom += character
+		}
+		return []
+	}
+
 	function terminate(index: number): Token.Atom[] {
 		if (atom.length > 0) {
 			const token: Token.Atom = {
@@ -20,14 +29,5 @@ export default function atomLexer(): Lexer<Token.Atom> {
 		return []
 	}
 
-	function process(character: string, index: number) {
-		if (/\s/.test(character)) terminate(index)
-		else if (atom.length === 0) {
-			start = index
-			atom += character
-		}
-		return []
-	}
-
-	return {lex: process, terminate}
+	return {lex, terminate}
 }
