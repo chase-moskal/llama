@@ -24,7 +24,7 @@
 		"watch-tests": "chokidar \"s/**/*.ts\" -c \"sleep 0.5 && npm run test -s\"",
 		"watch": "run-p watch-tsc watch-pug watch-sass watch-tests",
 		"start": "serve",
-		"test": "cynic node --label='crispy tests' x/tests.test.js",
+		"test": "cynic node --label='crispy tests' x/2/tests.test.js",
 		"test-browser": "cynic browser x/tests.test.js --open=true --importmap-path=./x/importmap.json"
 	},
 	"devDependencies": {
