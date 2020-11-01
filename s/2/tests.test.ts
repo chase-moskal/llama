@@ -1,7 +1,9 @@
 
-import {Suite, expect, assert} from "cynic"
+import {Suite, assert} from "cynic"
 
-import {Toke, tokenize, Tokens} from "./sketch.js"
+import Token from "./tokenize/token.js"
+import Syntax from "./tokenize/syntax.js"
+import tokenize from "./tokenize/tokenize.js"
 
 export default <Suite> {
 	"tokenize": {
@@ -23,8 +25,8 @@ export default <Suite> {
 				&& assert(tokens.length === 1, "one token")
 		},
 		"strings": async() => {
-			const tokens = <Tokens.String[]>tokenize(`"hello"`)
-			assert(tokens[0].type === Toke.String, "token is string")
+			const tokens = <Token.String[]>tokenize(`"hello"`)
+			assert(tokens[0].type === Syntax.String, "token is string")
 			assert(tokens[0].value === "hello", "value is 'hello'")
 			return true
 		},
