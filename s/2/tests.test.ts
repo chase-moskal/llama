@@ -1,8 +1,8 @@
 
 import {Suite, assert} from "cynic"
 
-import Token from "./tokenize/token.js"
-import Syntax from "./tokenize/syntax.js"
+import Token from "./tokenize/types/token.js"
+import Syntax from "./tokenize/types/syntax.js"
 import tokenize from "./tokenize/tokenize.js"
 
 export default <Suite> {

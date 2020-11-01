@@ -1,17 +1,14 @@
 
-import Trace from "./trace.js"
+import Trace from "../types/trace.js"
 
-export default function newAtomTracker(
+export default function atomTracker(
 		push: (data: {value: string; trace: Trace}) => void
 	) {
 	let start = 0
 	let atom = ""
 
-	function setStart(index: number) {
-		start = index
-	}
-
-	function add(char: string) {
+	function add(char: string, index: number) {
+		if (atom.length === 0) start = index
 		atom += char
 	}
 
@@ -23,5 +20,5 @@ export default function newAtomTracker(
 		atom = ""
 	}
 
-	return {setStart, add, end}
+	return {add, end}
 }

@@ -1,8 +1,8 @@
 
-import Trace from "./trace.js"
-import TokenizeError from "./errors/code-error.js"
+import Trace from "../types/trace.js"
+import TokenizeError from "../errors/code-error.js"
 
-export default function newStringTracker(
+export default function stringTracker(
 		push: (data: {value: string; trace: Trace}) => void
 	) {
 	let active = false

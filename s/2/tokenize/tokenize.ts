@@ -1,25 +1,26 @@
 
-import Token from "./token.js"
-import Syntax from "./syntax.js"
-import newAtomTracker from "./new-atom-tracker.js"
-import newStringTracker from "./new-string-tracker.js"
+import Token from "./types/token.js"
+import Syntax from "./types/syntax.js"
+import prepareTrackers from "./trackers/prepare-trackers.js"
+
+/**
+ *
+ *          (abc "my (expression)" (x y)) // comment
+ * atom      ==^                    ^ ^
+ * comment                                =========^
+ * string        ================^
+ * list     ----------------------------^
+ *                                 ----^
+ *
+ * one stateful tokenizing machine for each syntax
+ * - each machine can push tokens as they appear
+ */
 
 export default function tokenize(input: string) {
 	const characters = Array.from(input)
-	const {length} = characters
 
 	const tokens: Token.Any[] = []
-	const string = newStringTracker(({value, trace}) => tokens.push({
-		type: Syntax.String,
-		trace,
-		value,
-	}))
-
-	const atom = newAtomTracker(({value, trace}) => tokens.push({
-		type: Syntax.Atom,
-		trace,
-		value,
-	}))
+	const {string, atom} = prepareTrackers(tokens)
 
 	characters.forEach((character, index) => {
 		if (/"/.test(character)) {
@@ -34,12 +35,13 @@ export default function tokenize(input: string) {
 		// else if (/\)/.test(character)) {}
 		else {
 			const saved = string.consider(character)
-			if (!saved) atom.add(character)
+			if (!saved) atom.add(character, index)
 		}
 	})
 
-	const final = length - 1
+	const final = characters.length - 1
 	atom.end(final)
 	string.terminate(final)
+
 	return tokens
 }
