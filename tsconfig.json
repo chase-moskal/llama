@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"rootDir": "s",
+		"rootDir": "s4",
 		"outDir": "x",
 		"target": "es2018",
 		"lib": ["esnext", "dom"],
@@ -11,11 +11,7 @@
 		"sourceMap": true,
 		"declaration": true
 	},
-	"include": [
-		"s/**/*.ts",
-		"s/**/*.js"
-	],
 	"exclude": [
-		"s/**/_*"
+		"s"
 	],
 }
