@@ -6,7 +6,6 @@ export enum Axiom {
 }
 
 export namespace Syntax {
-	export type Sub = [Symbol, ...Datum[]]
 	export interface Datum {
 		type: Axiom
 	}
@@ -20,6 +19,8 @@ export namespace Syntax {
 		type: Axiom.Number
 		value: number
 	}
+
+	export type Sub = [Symbol, ...Datum[]]
 
 	export interface List extends Datum {
 		type: Axiom.List
