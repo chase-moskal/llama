@@ -1,5 +1,5 @@
 {
-	"name": "crispylisp",
+	"name": "llamalang",
 	"version": "0.0.0-dev.0",
 	"description": "",
 	"license": "ISC",
@@ -30,10 +30,10 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "git+https://github.com/chase-moskal/crispy.git"
+		"url": "git+https://github.com/chase-moskal/llama.git"
 	},
 	"bugs": {
-		"url": "https://github.com/chase-moskal/crispy/issues"
+		"url": "https://github.com/chase-moskal/llama/issues"
 	},
-	"homepage": "https://github.com/chase-moskal/crispy#readme"
+	"homepage": "https://github.com/chase-moskal/llama#readme"
 }
