@@ -11,5 +11,3 @@ export default <Lexer>{
 		}
 	},
 }
-
-export function lol

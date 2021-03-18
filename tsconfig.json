@@ -1,6 +1,6 @@
 {
 	"compilerOptions": {
-		"rootDir": "s4",
+		"rootDir": "s",
 		"outDir": "x",
 		"target": "es2018",
 		"lib": ["esnext", "dom"],
@@ -12,6 +12,6 @@
 		"declaration": true
 	},
 	"exclude": [
-		"s"
+		"s/_archive"
 	],
 }
