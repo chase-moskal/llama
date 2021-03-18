@@ -4,13 +4,12 @@ import {lexers} from "./lexers.js"
 import {TraceOffsets} from "./types/trace-offsets.js"
 
 export function tokenize(
-		input: string,
-		offsets: TraceOffsets = {
-			label: "script",
-			offset: 0,
-			offsetLine: 0,
-		},
-	): Token.Any[] {
+			input: string,
+			offsets: TraceOffsets = {
+				label: "script",
+				offset: 0,
+			},
+		): Token.Any[] {
 
 	let tokens: Token.Any[] = []
 	let remainder: string
@@ -20,8 +19,7 @@ export function tokenize(
 		if (result) {
 			tokens.push(result.token)
 			remainder = result.remainder
-			offsets.offset += result.content.length
-			offsets.offsetLine += (result.content.match(/\n/g) ?? []).length
+			offsets.offset = result.token.trace.end + 1
 			break
 		}
 	}

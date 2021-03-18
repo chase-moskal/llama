@@ -11,9 +11,13 @@
 		"package-lock.json": true,
 	},
 
+	"search.exclude": {
+		"s/_archive/**": true,
+	},
+
 	"files.watcherExclude": {
 		"x/**": true,
-		"source-a*/**": true,
+		"s/_archive/**": true,
 		"**/.git/objects/**": true,
 		"**/.git/subtree-cache/**": true,
 		"**/node_modules/*/**": true,

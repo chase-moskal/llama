@@ -2,21 +2,20 @@
 import {Lexer} from "../types/lexer.js"
 import {Token} from "../types/token.js"
 import {Syntax} from "../types/syntax.js"
+import {makeTrace} from "./helpers/make-trace.js"
 
-export const closeLexer: Lexer<Token.Open> = (input, offsets) => {
-	if (input[0] === ")") {
+const regex = /^(\s*)(\))(.*)$/
+
+export const closeLexer: Lexer<Token.Close> = (input, offsets) => {
+	const result = input.match(regex)
+	if (result) {
+		const [, whitespace, content, remainder] = result
 		return {
-			content: input[0],
-			remainder: input.slice(1),
+			content,
+			remainder,
 			token: {
-				syntax: Syntax.Open,
-				trace: {
-					label: offsets.label,
-					start: offsets.offset,
-					end: offsets.offset + 1,
-					line: offsets.offsetLine,
-					column: 0,
-				}
+				syntax: Syntax.Close,
+				trace: makeTrace(offsets, whitespace, content),
 			},
 		}
 	}

@@ -10,12 +10,12 @@
 		"x"
 	],
 	"scripts": {
-		"prepare": "run-s clean compile-tsc test",
+		"prepare": "run-s clean compile test",
 		"clean": "rimraf x",
-		"compile-tsc": "tsc",
-		"watch-tsc": "npm run compile-tsc -s -- --watch",
-		"test": "exit 0",
-		"test-soon": "cynic node x/tests.test.js"
+		"compile": "tsc",
+		"watch": "npm run compile -s -- --watch",
+		"test": "cynic node x/tests.test.js",
+		"testdebug": "node inspect node_modules/cynic/dist/cli.js node x/tests.test.js"
 	},
 	"devDependencies": {
 		"cynic": "0.1.0-dev.16",

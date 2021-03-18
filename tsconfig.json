@@ -11,7 +11,10 @@
 		"sourceMap": true,
 		"declaration": true
 	},
+	"include": [
+		"s"
+	],
 	"exclude": [
-		"s/_archive"
+		"s/_archive",
 	],
 }
